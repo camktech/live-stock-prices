@@ -1,16 +1,9 @@
 function Chart(id, title, salePricePoints, showXLabels){
-  let aaplColor = "#f18f01", 
-    googlColor = "#048ba8", 
-    fbColor = "#2e4057";
+  let aaplColor = "#33cc33", 
+    googlColor = "#cc4444", 
+    fbColor = "#048ba8";
 
   let options = {
-    title:{
-      text: title,
-      fontFamily: "tahoma",
-      fontWeight: "lighter",
-      fontSize: 25,
-      margin: 25
-    },
     type: 'line',
     backgroundColor: '#eee',
     axisY: [
