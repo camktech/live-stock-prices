@@ -6,6 +6,11 @@ function Chart(id, title, salePricePoints, showXLabels){
   let options = {
     type: 'line',
     backgroundColor: '#eee',
+    axisX: {
+      labelFontSize: 0,
+      tickThickness: 0,
+      margin: 20
+    },
     axisY: [
       {
         tickColor: aaplColor,
@@ -60,7 +65,9 @@ function Chart(id, title, salePricePoints, showXLabels){
 
         return content;
       },
-      shared: true
+      shared: true,
+      borderColor: '#ccc',
+      cornerRadius: 5
     },
     data: [
       {
@@ -89,27 +96,6 @@ function Chart(id, title, salePricePoints, showXLabels){
       }
     ]
   };
-
-  if(showXLabels){
-    // options.options = {
-    //   scales: {
-    //     xAxes: [{
-    //       time: {
-    //         unit: 'second'
-    //       },
-    //     }]
-    //   }
-    // };
-
-    options.axisX = {
-      // labelAngle: -45,
-      labelFontSize: 0,
-      tickThickness: 0,
-      margin: 20
-      // labelAutoFit: false,
-      // valueFormatString: 'hh:mm:ss'
-    };
-  }
 
   return new CanvasJS.Chart(id, options);
 }

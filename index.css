@@ -42,24 +42,26 @@
   float: right;
   margin-right: -61px;
   margin-top: -14.5px;
+  border-radius: 4px;
 }
 
 #last-time{
-  display: inline-block;
-  position: relative;
-  bottom: 25px;
-  left: 190px;
+  left: 40px;
 }
 
 #current-time{
-  display: inline-block;
   float: right;
-  position: relative;
-  bottom: 25px;
   right: 10px;
 }
 
+#date{
+  left: 10px;
+}
+
 .time-stamp{
+  bottom: 25px;
+  display: inline-block;
+  position: relative;
   padding: 2px;
   border-radius: 4px;
   z-index: 2;
