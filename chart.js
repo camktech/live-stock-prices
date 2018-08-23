@@ -1,43 +1,120 @@
-function Chartt(id, title, salePricePoints, showXLabels){
+function Chart(id, title, salePricePoints, showXLabels){
+  let aaplColor = "#f18f01", 
+    googlColor = "#048ba8", 
+    fbColor = "#2e4057";
+
   let options = {
     title:{
-      text: title
+      text: title,
+      fontFamily: "tahoma",
+      fontWeight: "lighter",
+      fontSize: 25,
+      margin: 25
     },
     type: 'line',
-    axisY: {
-      includeZero: false,
+    backgroundColor: '#eee',
+    axisY: [
+      {
+        tickColor: aaplColor,
+        labelFontColor: aaplColor,
+        labelFontSize: 12,
+        prefix: '$',
+        includeZero: false,
+        gridThickness: 0,
+        gridColor: aaplColor,
+        labelFormatter: (e) => {
+          return `${parseFloat(e.value).toFixed(2)}`
+        }
+      },
+      {
+        tickColor: googlColor,
+        labelFontColor: googlColor,
+        labelFontSize: 12,
+        prefix: '$',
+        includeZero: false,
+        gridThickness: 0,
+        gridColor: googlColor,
+        labelFormatter: (e) => {
+          return `${parseFloat(e.value).toFixed(2)}`
+        }
+      },
+      {
+        tickColor: fbColor,
+        labelFontColor: fbColor,
+        labelFontSize: 12,
+        prefix: '$',
+        includeZero: false,
+        gridThickness: 0,
+        gridColor: fbColor,
+        labelFormatter: (e) => {
+          return `${parseFloat(e.value).toFixed(2)}`
+        }
+      }
+    ],
+    legend: {
+      verticalAlign: "top"
     },
     toolTip: {
       contentFormatter: function (e) {
-        // return CanvasJS.formatDate(e.entries[0].dataPoint.x, "hh:mm:ss");
-        return "$" + e.entries[0].dataPoint.y;
-      }
+        let date = new Date(e.entries[0].dataPoint.x);
+        let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+        let content = `<div style='width:100%; text-align:center; font-weight:bold;'>${date.getHours()}:${minutes}:${seconds}</div>`;
+
+        e.entries.forEach((e) => {
+          content += "<div><span style='color: " + e.dataSeries.color + "; display:inline-block; width:70px;'>" + e.dataSeries.name + ":</span> <span>$" + parseFloat(e.dataPoint.y).toFixed(2) + "</span></div>";
+        });
+
+        return content;
+      },
+      shared: true
     },
     data: [
-     {
-      type: 'line',
-      dataPoints: salePricePoints
-    },
+      {
+        type: 'line',
+        dataPoints: salePricePoints.aapl,
+        axisYIndex: 0,
+        showInLegend: true,
+        name: 'AAPL',
+        color: aaplColor
+      },
+      {
+        type: 'line',
+        dataPoints: salePricePoints.googl,
+        axisYIndex: 1,
+        showInLegend: true,
+        name: 'GOOGL',
+        color: googlColor
+      },
+      {
+        type: 'line',
+        dataPoints: salePricePoints.fb,
+        axisYIndex: 2,
+        showInLegend: true,
+        name: 'FB',
+        color: fbColor
+      }
     ]
   };
 
   if(showXLabels){
-    options.options = {
-      scales: {
-        xAxes: [{
-          time: {
-            unit: 'second'
-          },
-        }]
-      }
-    };
+    // options.options = {
+    //   scales: {
+    //     xAxes: [{
+    //       time: {
+    //         unit: 'second'
+    //       },
+    //     }]
+    //   }
+    // };
 
     options.axisX = {
-      labelAngle: -45,
-      labelFontSize: 10,
-      tickThickness: 1,
-      labelAutoFit: false,
-      valueFormatString: 'hh:mm:ss'
+      // labelAngle: -45,
+      labelFontSize: 0,
+      tickThickness: 0,
+      margin: 20
+      // labelAutoFit: false,
+      // valueFormatString: 'hh:mm:ss'
     };
   }
 

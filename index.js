@@ -10,27 +10,34 @@ $(document).ready(() => {
     fb: []
   }
 
-  var maxPointsShown = 20;
+  var maxPointsShown = 12;
 
-  var chart = Chartt('chart1', 'AAPL', salePricePoints.aapl, true)
-  var chart2 = Chartt('chart2', 'FB', salePricePoints.fb, true)
-  var chart3 = Chartt('chart3', 'GOOGL', salePricePoints.googl, true)
+  var chart = Chart('chart', 'Real-Time Sale Prices', salePricePoints, true)
 
   var updateChart = function(){
+    let date = new Date();
+
     for(let symbol in salePricePoints){
-      salePricePoints[symbol].push({x: new Date(), y: lastSalePrices[symbol], markerSize: 2})
+      salePricePoints[symbol].push({x: date, y: lastSalePrices[symbol] + (Math.random() * 1.4), markerSize: 4})
       if(salePricePoints[symbol].length > maxPointsShown){
         salePricePoints[symbol].shift();
       }
     }
+    $('#current-time').text(getTime(date));
+    if(salePricePoints.aapl[0])
+      $('#last-time').text(getTime(new Date(salePricePoints.aapl[0].x)));
     chart.render();
-    chart2.render();
-    chart3.render();
   }
 
   function updatePrices(data){
     let symbol = data.symbol.toLowerCase();
     lastSalePrices[symbol] = parseFloat(data['lastSalePrice']);
+  }
+
+  function getTime(date){
+    let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    return `${date.getHours()}:${minutes}:${seconds}`;
   }
 
 
