@@ -1,4 +1,4 @@
-#Live Stock Prices from IEXTrading's free api. 
+# Live Stock Prices from IEXTrading's free api. 
 
 Currently includes data of AAPL, GOOGL, and FB.
 
