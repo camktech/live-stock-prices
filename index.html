@@ -5,25 +5,28 @@
   <link rel="stylesheet" type="text/css" href="./index.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script type="text/javascript" src="./jquery.canvasjs.min.js"></script>
-  <script type="text/javascript" src="socketio.js"></script>
+  <script type="text/javascript" src="./socketio.js"></script>
   <script type="text/javascript" src="./chart.js"></script>
   <script type="text/javascript" src="./index.js"></script>
 </head>
 <body>
     <button id="connect">subscribe</button>
     <button id="disconnect">unsubscribe</button>
-  <div id="chart-container">
-    <div id="title">Real-Time Stock Prices</div>
-    <div id="chart" class="chart"></div>
-    <div id="time-stamps">
-      <div id="date" class="time-stamp"></div>
-      <div id="last-time" class="time-stamp"></div>
-      <div id="current-time" class="time-stamp"></div>
+    <div id="main-container">
+      <a href="https://iextrading.com/developer">IEX Real-Time Price</a>
+      <div id="chart-container">
+        <div id="title">Real-Time Stock Prices</div>
+        <div id="chart" class="chart"></div>
+        <div id="time-stamps">
+          <div id="date" class="time-stamp"></div>
+          <div id="last-time" class="time-stamp"></div>
+          <div id="current-time" class="time-stamp"></div>
+        </div>
+        <div id="hiders">
+          <div id="hider-left" class="hider"></div>
+          <div id="hider-right" class="hider"></div>
+        </div>
+      </div>
     </div>
-    <div id="hiders">
-      <div id="hider-left" class="hider"></div>
-      <div id="hider-right" class="hider"></div>
-    </div>
-  </div>
 </body>
 </html>

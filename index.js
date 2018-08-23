@@ -60,6 +60,7 @@ $(document).ready(() => {
     setInterval(() => {updateChart()}, 1000);
     setInterval(() => {updateDate()}, 60000);
     updateDate();
+    socket.emit('subscribe', 'aapl,fb,googl');
     $('#connect').click(() => {
       socket.emit('subscribe', 'aapl,fb,googl');
     });
